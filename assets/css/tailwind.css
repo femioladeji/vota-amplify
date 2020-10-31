@@ -1,0 +1,41 @@
+/* purgecss start ignore */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+/* purgecss end ignore */
+@import 'tailwindcss/utilities';
+
+.input-field {
+    @apply text-sm ml-2 w-full border border-gray-400 rounded p-2;
+  }
+  
+  .btn {
+    @apply rounded font-medium px-10 py-2;
+  }
+  
+  .btn-green {
+    @apply bg-green-700 text-white;
+  }
+  
+  .btn-white {
+    @apply border border-green-700 bg-white text-green-700;
+  }
+  
+  .btn:focus {
+    @apply outline-none;
+  }
+  
+  .btn-xs {
+    @apply px-4 py-1;
+  }
+  
+  .input-field:focus {
+    @apply outline-none border-gray-600;
+  }
+  
+  .nuxt-progress {
+    @apply fixed bg-green-300 w-full;
+    height: 5px;
+    top: 70px;
+    left: 280px;
+  }
+  
