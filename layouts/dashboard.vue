@@ -25,6 +25,7 @@ export default {
     AuthNav,
     Sidebar
   },
+  middleware: 'authenticated',
   fetch () {
     const path = this.$route.name.split('-')
     this.name = path[1]

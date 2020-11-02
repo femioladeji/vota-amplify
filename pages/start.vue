@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { Auth } from 'aws-amplify'
 import Register from '@/components/Auth/Register'
 import Login from '@/components/Auth/Login'
 
@@ -31,6 +32,13 @@ export default {
   components: {
     Register,
     Login
+  },
+  middleware ({ redirect }) {
+    if (process.client) {
+      Auth.currentAuthenticatedUser().then((user) => {
+        redirect('/dashboard')
+      })
+    }
   },
   data () {
     return {

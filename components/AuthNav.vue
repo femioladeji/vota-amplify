@@ -16,7 +16,7 @@ export default {
     async logout () {
       try {
         await Auth.signOut()
-        this.$nuxt.$router.push('/')
+        this.$nuxt.$router.push('/start')
       } catch (err) {
         alert('An error occurred while logging you out')
       }
