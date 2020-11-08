@@ -3,8 +3,7 @@ import { Auth } from 'aws-amplify'
 
 export default async ({ redirect }) => {
   try {
-    const user = await Auth.currentAuthenticatedUser()
-    console.log(user)
+    await Auth.currentAuthenticatedUser()
   } catch (_) {
     redirect('/start')
   }

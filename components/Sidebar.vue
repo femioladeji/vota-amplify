@@ -9,7 +9,7 @@
       </nuxt-link>
       <nuxt-link
         class="block py-2 pl-4 border-b border-gray-700"
-        to="/dashboard/polls"
+        to="/dashboard/poll"
       >
         Polls
       </nuxt-link>

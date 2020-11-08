@@ -5,19 +5,19 @@
 @import 'tailwindcss/utilities';
 
 .input-field {
-    @apply text-sm ml-2 w-full border border-gray-400 rounded p-2;
+    @apply w-full p-2 ml-2 text-sm border border-gray-400 rounded;
   }
   
   .btn {
-    @apply rounded font-medium px-10 py-2;
+    @apply px-10 py-2 font-medium rounded cursor-pointer;
   }
   
   .btn-green {
-    @apply bg-green-700 text-white;
+    @apply text-white bg-green-700;
   }
   
   .btn-white {
-    @apply border border-green-700 bg-white text-green-700;
+    @apply text-green-700 bg-white border border-green-700;
   }
   
   .btn:focus {
@@ -29,11 +29,11 @@
   }
   
   .input-field:focus {
-    @apply outline-none border-gray-600;
+    @apply border-gray-600 outline-none;
   }
   
   .nuxt-progress {
-    @apply fixed bg-green-300 w-full;
+    @apply fixed w-full bg-green-300;
     height: 5px;
     top: 70px;
     left: 280px;
