@@ -1,4 +1,4 @@
-type Task
+type Poll
   @model
   @auth(
     rules: [
@@ -7,11 +7,16 @@ type Task
     ]
   ) {
   id: ID!
-  title: String!
+  name: String!
   description: String
-  status: String
+  startDate: AWSDateTime
+  endDate: AWSDateTime
+  publishStatus: Boolean!
+  isPublic: Boolean!
+  isAnonymous: Boolean!
+  link: String!
 }
-type PrivateNote @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  content: String!
-}
+# type PrivateNote @model @auth(rules: [{ allow: owner }]) {
+#   id: ID!
+#   content: String!
+# }
