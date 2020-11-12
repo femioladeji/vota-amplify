@@ -18,6 +18,7 @@ export const createPoll = /* GraphQL */ `
       link
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -38,6 +39,7 @@ export const updatePoll = /* GraphQL */ `
       link
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -58,6 +60,7 @@ export const deletePoll = /* GraphQL */ `
       link
       createdAt
       updatedAt
+      owner
     }
   }
 `;

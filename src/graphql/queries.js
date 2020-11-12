@@ -15,6 +15,7 @@ export const getPoll = /* GraphQL */ `
       link
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -37,6 +38,7 @@ export const listPolls = /* GraphQL */ `
         link
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

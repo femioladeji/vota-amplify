@@ -1,11 +1,6 @@
 type Poll
   @model
-  @auth(
-    rules: [
-      { allow: groups, groups: ["Managers"], queries: null, mutations: [create, update, delete] }
-      { allow: groups, groups: ["Employees"], queries: [get, list], mutations: null }
-    ]
-  ) {
+  @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String!
   description: String
@@ -16,7 +11,3 @@ type Poll
   isAnonymous: Boolean!
   link: String!
 }
-# type PrivateNote @model @auth(rules: [{ allow: owner }]) {
-#   id: ID!
-#   content: String!
-# }

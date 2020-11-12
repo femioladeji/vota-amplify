@@ -10,7 +10,9 @@
 </template>
 
 <script>
+import { API } from 'aws-amplify'
 import PollForm from '../../../components/Poll/Form'
+import { createPoll } from '../../../src/graphql/mutations'
 
 export default {
   name: 'CreatePoll',
@@ -37,8 +39,12 @@ export default {
     }
   },
   methods: {
-    createPoll () {
-      console.log('create')
+    createPoll (pollInput) {
+      const input = { ...pollInput, link: 'this is a random link' }
+      API.graphql({
+        query: createPoll,
+        variables: { input }
+      })
     }
   }
 }

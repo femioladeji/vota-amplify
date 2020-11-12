@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreatePoll = /* GraphQL */ `
-  subscription OnCreatePoll {
-    onCreatePoll {
+  subscription OnCreatePoll($owner: String!) {
+    onCreatePoll(owner: $owner) {
       id
       name
       description
@@ -15,12 +15,13 @@ export const onCreatePoll = /* GraphQL */ `
       link
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdatePoll = /* GraphQL */ `
-  subscription OnUpdatePoll {
-    onUpdatePoll {
+  subscription OnUpdatePoll($owner: String!) {
+    onUpdatePoll(owner: $owner) {
       id
       name
       description
@@ -32,12 +33,13 @@ export const onUpdatePoll = /* GraphQL */ `
       link
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeletePoll = /* GraphQL */ `
-  subscription OnDeletePoll {
-    onDeletePoll {
+  subscription OnDeletePoll($owner: String!) {
+    onDeletePoll(owner: $owner) {
       id
       name
       description
@@ -49,6 +51,7 @@ export const onDeletePoll = /* GraphQL */ `
       link
       createdAt
       updatedAt
+      owner
     }
   }
 `;
