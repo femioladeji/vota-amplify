@@ -1,90 +1,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTask = /* GraphQL */ `
-  mutation CreateTask(
-    $input: CreateTaskInput!
-    $condition: ModelTaskConditionInput
+export const createPoll = /* GraphQL */ `
+  mutation CreatePoll(
+    $input: CreatePollInput!
+    $condition: ModelPollConditionInput
   ) {
-    createTask(input: $input, condition: $condition) {
+    createPoll(input: $input, condition: $condition) {
       id
-      title
+      name
       description
-      status
+      startDate
+      endDate
+      publishStatus
+      isPublic
+      isAnonymous
+      link
       createdAt
       updatedAt
     }
   }
 `;
-export const updateTask = /* GraphQL */ `
-  mutation UpdateTask(
-    $input: UpdateTaskInput!
-    $condition: ModelTaskConditionInput
+export const updatePoll = /* GraphQL */ `
+  mutation UpdatePoll(
+    $input: UpdatePollInput!
+    $condition: ModelPollConditionInput
   ) {
-    updateTask(input: $input, condition: $condition) {
+    updatePoll(input: $input, condition: $condition) {
       id
-      title
+      name
       description
-      status
+      startDate
+      endDate
+      publishStatus
+      isPublic
+      isAnonymous
+      link
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteTask = /* GraphQL */ `
-  mutation DeleteTask(
-    $input: DeleteTaskInput!
-    $condition: ModelTaskConditionInput
+export const deletePoll = /* GraphQL */ `
+  mutation DeletePoll(
+    $input: DeletePollInput!
+    $condition: ModelPollConditionInput
   ) {
-    deleteTask(input: $input, condition: $condition) {
+    deletePoll(input: $input, condition: $condition) {
       id
-      title
+      name
       description
-      status
+      startDate
+      endDate
+      publishStatus
+      isPublic
+      isAnonymous
+      link
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createPrivateNote = /* GraphQL */ `
-  mutation CreatePrivateNote(
-    $input: CreatePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    createPrivateNote(input: $input, condition: $condition) {
-      id
-      content
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const updatePrivateNote = /* GraphQL */ `
-  mutation UpdatePrivateNote(
-    $input: UpdatePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    updatePrivateNote(input: $input, condition: $condition) {
-      id
-      content
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const deletePrivateNote = /* GraphQL */ `
-  mutation DeletePrivateNote(
-    $input: DeletePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    deletePrivateNote(input: $input, condition: $condition) {
-      id
-      content
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

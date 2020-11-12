@@ -1,61 +1,42 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTask = /* GraphQL */ `
-  query GetTask($id: ID!) {
-    getTask(id: $id) {
+export const getPoll = /* GraphQL */ `
+  query GetPoll($id: ID!) {
+    getPoll(id: $id) {
       id
-      title
+      name
       description
-      status
+      startDate
+      endDate
+      publishStatus
+      isPublic
+      isAnonymous
+      link
       createdAt
       updatedAt
     }
   }
 `;
-export const listTasks = /* GraphQL */ `
-  query ListTasks(
-    $filter: ModelTaskFilterInput
+export const listPolls = /* GraphQL */ `
+  query ListPolls(
+    $filter: ModelPollFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPolls(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
+        name
         description
-        status
+        startDate
+        endDate
+        publishStatus
+        isPublic
+        isAnonymous
+        link
         createdAt
         updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPrivateNote = /* GraphQL */ `
-  query GetPrivateNote($id: ID!) {
-    getPrivateNote(id: $id) {
-      id
-      content
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listPrivateNotes = /* GraphQL */ `
-  query ListPrivateNotes(
-    $filter: ModelPrivateNoteFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPrivateNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        content
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }

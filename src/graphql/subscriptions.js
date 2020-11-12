@@ -1,72 +1,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTask = /* GraphQL */ `
-  subscription OnCreateTask {
-    onCreateTask {
+export const onCreatePoll = /* GraphQL */ `
+  subscription OnCreatePoll {
+    onCreatePoll {
       id
-      title
+      name
       description
-      status
+      startDate
+      endDate
+      publishStatus
+      isPublic
+      isAnonymous
+      link
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateTask = /* GraphQL */ `
-  subscription OnUpdateTask {
-    onUpdateTask {
+export const onUpdatePoll = /* GraphQL */ `
+  subscription OnUpdatePoll {
+    onUpdatePoll {
       id
-      title
+      name
       description
-      status
+      startDate
+      endDate
+      publishStatus
+      isPublic
+      isAnonymous
+      link
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteTask = /* GraphQL */ `
-  subscription OnDeleteTask {
-    onDeleteTask {
+export const onDeletePoll = /* GraphQL */ `
+  subscription OnDeletePoll {
+    onDeletePoll {
       id
-      title
+      name
       description
-      status
+      startDate
+      endDate
+      publishStatus
+      isPublic
+      isAnonymous
+      link
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onCreatePrivateNote = /* GraphQL */ `
-  subscription OnCreatePrivateNote($owner: String!) {
-    onCreatePrivateNote(owner: $owner) {
-      id
-      content
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdatePrivateNote = /* GraphQL */ `
-  subscription OnUpdatePrivateNote($owner: String!) {
-    onUpdatePrivateNote(owner: $owner) {
-      id
-      content
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeletePrivateNote = /* GraphQL */ `
-  subscription OnDeletePrivateNote($owner: String!) {
-    onDeletePrivateNote(owner: $owner) {
-      id
-      content
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
