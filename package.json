@@ -13,6 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/toast": "^3.3.1",
     "aws-amplify": "^3.3.5",
     "aws-amplify-vue": "^2.1.2",
     "date-fns": "^2.16.1",

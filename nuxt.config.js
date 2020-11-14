@@ -46,7 +46,12 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/toast'
   ],
+  toast: {
+    position: 'top-right',
+    duration: 3000
+  },
   /*
   ** Build configuration
   */

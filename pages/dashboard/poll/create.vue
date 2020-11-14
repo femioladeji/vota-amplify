@@ -39,12 +39,18 @@ export default {
     }
   },
   methods: {
-    createPoll (pollInput) {
+    async createPoll (pollInput) {
       const input = { ...pollInput, link: 'this is a random link' }
-      API.graphql({
-        query: createPoll,
-        variables: { input }
-      })
+      try {
+        await API.graphql({
+          query: createPoll,
+          variables: { input }
+        })
+        this.$toast.success('Poll was created')
+        this.$nuxt.$router.push('/dashboard/poll')
+      } catch (e) {
+        this.$toast.error('An error occurred while creating the poll')
+      }
     }
   }
 }
