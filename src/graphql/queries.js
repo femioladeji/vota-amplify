@@ -13,6 +13,19 @@ export const getPoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      questions {
+        items {
+          id
+          pollId
+          question
+          description
+          status
+          options
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -36,9 +49,47 @@ export const listPolls = /* GraphQL */ `
         isPublic
         isAnonymous
         link
+        questions {
+          nextToken
+        }
         createdAt
         updatedAt
         owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getPollQuestion = /* GraphQL */ `
+  query GetPollQuestion($id: ID!) {
+    getPollQuestion(id: $id) {
+      id
+      pollId
+      question
+      description
+      status
+      options
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPollQuestions = /* GraphQL */ `
+  query ListPollQuestions(
+    $filter: ModelPollQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPollQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        pollId
+        question
+        description
+        status
+        options
+        createdAt
+        updatedAt
       }
       nextToken
     }

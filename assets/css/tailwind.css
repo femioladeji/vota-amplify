@@ -15,6 +15,10 @@
   .btn-green {
     @apply text-white bg-green-700;
   }
+
+  .btn-danger {
+    @apply text-white bg-red-500;
+  }
   
   .btn-white {
     @apply text-green-700 bg-white border border-green-700;

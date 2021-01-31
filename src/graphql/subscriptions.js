@@ -13,6 +13,19 @@ export const onCreatePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      questions {
+        items {
+          id
+          pollId
+          question
+          description
+          status
+          options
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -31,6 +44,19 @@ export const onUpdatePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      questions {
+        items {
+          id
+          pollId
+          question
+          description
+          status
+          options
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -49,9 +75,64 @@ export const onDeletePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      questions {
+        items {
+          id
+          pollId
+          question
+          description
+          status
+          options
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
+    }
+  }
+`;
+export const onCreatePollQuestion = /* GraphQL */ `
+  subscription OnCreatePollQuestion {
+    onCreatePollQuestion {
+      id
+      pollId
+      question
+      description
+      status
+      options
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePollQuestion = /* GraphQL */ `
+  subscription OnUpdatePollQuestion {
+    onUpdatePollQuestion {
+      id
+      pollId
+      question
+      description
+      status
+      options
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePollQuestion = /* GraphQL */ `
+  subscription OnDeletePollQuestion {
+    onDeletePollQuestion {
+      id
+      pollId
+      question
+      description
+      status
+      options
+      createdAt
+      updatedAt
     }
   }
 `;

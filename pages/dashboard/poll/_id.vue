@@ -21,6 +21,13 @@
         >
           Invite People
         </button>
+        <button
+          v-if="poll && poll.id && !showForm"
+          class="btn btn-danger"
+          @click="removePoll"
+        >
+          Delete Poll
+        </button>
       </div>
     </div>
     <div>
@@ -30,68 +37,68 @@
       </div> -->
       <div>
         <!-- <Invitation v-if="poll" :poll-id="poll.id" /> -->
-        <!-- <poll-form
+        <poll-form
           v-if="showForm"
           :poll="poll"
           :edit="true"
           @cancel="showForm = false"
           @submit="editPoll"
-        /> -->
+        />
         <div v-if="!showForm && poll" class="px-8 py-4">
           <div class="leading-loose">
             <div class="flex text-sm">
-              <p class="w-1/4 mr-2 font-bold">
+              <p class="w-1/5 mr-2 font-bold">
                 Name:
               </p>
               {{ poll.name }}
             </div>
             <div class="flex text-sm">
-              <p class="w-1/4 mr-2 font-bold">
+              <p class="w-1/5 mr-2 font-bold">
                 Description:
               </p>
               {{ poll.description }}
             </div>
             <div v-if="poll.publishStatus" class="flex text-sm">
-              <p class="w-1/4 mr-2 font-bold">
+              <p class="w-1/5 mr-2 font-bold">
                 Is Poll live?
               </p>
               Yes
             </div>
             <div v-if="!poll.publishStatus" class="flex text-sm">
-              <p class="w-1/4 mr-2 font-bold">
+              <p class="w-1/5 mr-2 font-bold">
                 From:
               </p>
               {{ poll.startDate }}
             </div>
             <div v-if="!poll.publishStatus" class="flex text-sm">
-              <p class="w-1/4 mr-2 font-bold">
+              <p class="w-1/5 mr-2 font-bold">
                 To:
               </p>
               {{ poll.endDate }}
             </div>
             <div class="flex text-sm">
-              <p class="w-1/4 mr-2 font-bold">
+              <p class="w-1/5 mr-2 font-bold">
                 Is Poll Public:
               </p>
               {{ poll.isPublic }}
             </div>
             <div class="flex text-sm">
-              <p class="w-1/4 mr-2 font-bold">
+              <p class="w-1/5 mr-2 font-bold">
                 Is Anonymous:
               </p>
               {{ poll.isAnonymous }}
             </div>
             <div class="flex text-sm">
-              <p class="w-1/4 mr-2 font-bold">
-                Link:
+              <p class="w-1/5 mr-2 font-bold">
+                Poll Link:
               </p>
               {{ poll.link }}
             </div>
           </div>
-          <!-- <p v-if="poll.questions.length" class="mt-4 text-lg">
+          <p v-if="poll.questions.items.length" class="mt-4 text-lg">
             Questions
           </p>
-          <table v-if="poll.questions.length" class="w-full mt-4 table-auto">
+          <table v-if="poll.questions.items.length" class="w-full mt-4 table-auto">
             <thead>
               <tr>
                 <th class="px-4 py-2">
@@ -106,7 +113,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(question, key) in poll.questions" :key="key">
+              <tr v-for="(question, key) in poll.questions.items" :key="key">
                 <td class="px-4 py-2 border">
                   {{ question.question }}
                 </td>
@@ -116,7 +123,7 @@
                       v-for="(option, index) in question.options"
                       :key="index"
                     >
-                      {{ option.name }}
+                      {{ option }}
                     </li>
                   </ul>
                 </td>
@@ -134,12 +141,12 @@
                 </td>
               </tr>
             </tbody>
-          </table> -->
-          <!-- <question-form
-            :questions-length="poll.questions.length"
+          </table>
+          <question-form
+            :questions-length="poll.questions && poll.questions.items.length"
             :question-edit="questionEdit"
             @save="save"
-          /> -->
+          />
         </div>
       </div>
     </div>
@@ -149,7 +156,16 @@
 <script>
 import { API } from 'aws-amplify'
 import { getPoll } from '../../../src/graphql/queries'
-// import PollForm from '../../../components/Poll/Form'
+import {
+  updatePoll,
+  deletePoll,
+  createPollQuestion,
+  updatePollQuestion,
+  deletePollQuestion
+} from '../../../src/graphql/mutations'
+import PollForm from '../../../components/Poll/Form'
+import QuestionForm from '../../../components/Poll/QuestionForm'
+
 export default {
   name: 'PollDashboard',
   layout: 'dashboard',
@@ -158,18 +174,12 @@ export default {
   },
   components: {
     // Loader,
-    // PollForm
+    PollForm,
     // Invitation,
-    // QuestionForm
+    QuestionForm
   },
-  async fetch () {
-    const poll = await API.graphql({
-      query: getPoll,
-      variables: {
-        id: this.$route.params.id
-      }
-    })
-    this.poll = poll.data.getPoll
+  fetch () {
+    this.getPollDetails()
   },
   data () {
     return {
@@ -179,39 +189,111 @@ export default {
     }
   },
   methods: {
-    save ({ question, description, options }, isEdit) {
-      if (!question) {
-        return
-      }
-      if (options.length < 2) {
-        return
-      }
+    async getPollDetails () {
+      const poll = await API.graphql({
+        query: getPoll,
+        variables: {
+          id: this.$route.params.id
+        }
+      })
+      this.poll = poll.data.getPoll
+    },
+    save ({ question, options }, isEdit) {
       if (isEdit) {
         return this.editQuestion(
           question,
-          description,
           options,
           this.questionEdit.id,
           this.questionEdit.index
         )
       }
-      this.addQuestion(question, description, options)
+      this.addQuestion(question, options)
     },
 
-    async addQuestion (question, description, options) {
-
+    async addQuestion (question, options) {
+      const { data } = await API.graphql({
+        query: createPollQuestion,
+        variables: {
+          input: {
+            pollId: this.$route.params.id,
+            question,
+            options
+          }
+        }
+      })
+      const { questions } = this.poll
+      questions.items.push(data.createPollQuestion)
+      this.$set(this.poll, 'questions', questions)
     },
 
-    async editQuestion (question, description, options, questionId, index) {
+    async editQuestion (question, options, questionId, index) {
+      await API.graphql({
+        query: updatePollQuestion,
+        variables: {
+          input: {
+            id: questionId,
+            pollId: this.$route.params.id,
+            question,
+            options
+          }
+        }
+      })
+      this.questionEdit = null
+      const { questions } = this.poll
+      questions.items[index] = { ...questions.items[index], question, options }
+      this.$set(this.poll, 'questions', questions)
     },
 
     async deleteQuestion (questionId, index) {
+      await API.graphql({
+        query: deletePollQuestion,
+        variables: {
+          input: {
+            id: questionId
+          }
+        }
+      })
+      const { questions } = this.poll
+      questions.items.splice(index, 1)
+      this.$set(this.poll, 'questions', questions)
     },
 
     async editPoll (poll) {
+      const editedPoll = { ...poll, id: this.$route.params.id }
+      try {
+        await API.graphql({
+          query: updatePoll,
+          variables: {
+            input: editedPoll
+          }
+        })
+        this.poll = { ...this.poll, ...editedPoll }
+        this.showForm = false
+      } catch (error) {
+        this.$toast.error('An error occurred while editing the poll')
+      }
+    },
+
+    async removePoll () {
+      try {
+        await API.graphql({
+          query: deletePoll,
+          variables: {
+            input: {
+              id: this.poll.id
+            }
+          }
+        })
+        this.$nuxt.$router.push('/dashboard/poll')
+      } catch (error) {
+        this.$toast.error('An error occurred while deleting the poll')
+      }
     },
 
     initEditQuestion (index) {
+      this.questionEdit = { ...this.poll.questions.items[index], index }
+      const content = document.querySelector('.content')
+      content.scrollTop = content.scrollHeight
     },
 
     showInviteForm () {

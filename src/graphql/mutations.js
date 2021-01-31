@@ -16,6 +16,19 @@ export const createPoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      questions {
+        items {
+          id
+          pollId
+          question
+          description
+          status
+          options
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -37,6 +50,19 @@ export const updatePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      questions {
+        items {
+          id
+          pollId
+          question
+          description
+          status
+          options
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -58,9 +84,73 @@ export const deletePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      questions {
+        items {
+          id
+          pollId
+          question
+          description
+          status
+          options
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
+    }
+  }
+`;
+export const createPollQuestion = /* GraphQL */ `
+  mutation CreatePollQuestion(
+    $input: CreatePollQuestionInput!
+    $condition: ModelPollQuestionConditionInput
+  ) {
+    createPollQuestion(input: $input, condition: $condition) {
+      id
+      pollId
+      question
+      description
+      status
+      options
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePollQuestion = /* GraphQL */ `
+  mutation UpdatePollQuestion(
+    $input: UpdatePollQuestionInput!
+    $condition: ModelPollQuestionConditionInput
+  ) {
+    updatePollQuestion(input: $input, condition: $condition) {
+      id
+      pollId
+      question
+      description
+      status
+      options
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePollQuestion = /* GraphQL */ `
+  mutation DeletePollQuestion(
+    $input: DeletePollQuestionInput!
+    $condition: ModelPollQuestionConditionInput
+  ) {
+    deletePollQuestion(input: $input, condition: $condition) {
+      id
+      pollId
+      question
+      description
+      status
+      options
+      createdAt
+      updatedAt
     }
   }
 `;

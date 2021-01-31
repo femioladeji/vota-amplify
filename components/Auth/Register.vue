@@ -49,7 +49,7 @@
     </form>
     <form v-if="!isRegisterStep" @submit.prevent="confirm">
       <p class="mb-2 text-center text-md">
-        Please confirm your email address
+        Please confirm your email address by checking your email
       </p>
       <div class="mb-6">
         <label for="email" class="text-sm">Email</label>

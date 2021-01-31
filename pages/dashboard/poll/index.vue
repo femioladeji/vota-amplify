@@ -9,7 +9,10 @@
       </nuxt-link>
     </div>
     <div class="px-8 py-4">
-      <table class="w-full p-4 table-auto">
+      <div v-if="loading">
+        Loading...
+      </div>
+      <table v-else-if="polls.length" class="w-full p-4 table-auto">
         <thead>
           <tr>
             <th class="px-4 py-2">
@@ -48,6 +51,9 @@
           </tr>
         </tbody>
       </table>
+      <div v-else>
+        You have not created any poll yet
+      </div>
     </div>
   </div>
 </template>
@@ -63,11 +69,13 @@ export default {
     const polls = await API.graphql({
       query: listPolls
     })
+    this.loading = false
     this.polls = polls.data.listPolls.items
   },
   data () {
     return {
-      polls: []
+      polls: [],
+      loading: true
     }
   }
 }

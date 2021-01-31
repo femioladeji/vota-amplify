@@ -29,7 +29,8 @@ export default {
   */
   plugins: [
     { src: '~/plugins/amplify.js', mode: 'client' },
-    { src: '~/plugins/toggle-button.js', mode: 'client' }
+    { src: '~/plugins/toggle-button.js', mode: 'client' },
+    { src: './plugins/tag-input', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules

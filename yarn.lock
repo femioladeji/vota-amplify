@@ -2304,6 +2304,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@johmun/vue-tags-input@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@johmun/vue-tags-input/-/vue-tags-input-2.1.0.tgz#d265c00ecea092ecfcea21945f31c22a619e4862"
+  integrity sha512-Fdwfss/TqCqMJbGAkmlzKbcG/ia1MstYjhqPBj+zG7h/166tIcE1TIftUxhT9LZ+RWjRSG0EFA1UyaHQSr3k3Q==
+  dependencies:
+    vue "^2.6.10"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -12639,7 +12646,7 @@ vue2-filters@^0.7.2:
   resolved "https://registry.yarnpkg.com/vue2-filters/-/vue2-filters-0.7.2.tgz#762e8b24c9ccaa152ac43b06c21c3e41ed6c13eb"
   integrity sha512-7I74isiBUQFGaNbVv57NzHGqh54cLe0JNJmJmu66wxP5eOK/CqHN4iqHMgwPPPvPbgbFbpI/GjbHiIx8tNruwg==
 
-vue@^2.5.17, vue@^2.6.12:
+vue@^2.5.17, vue@^2.6.10, vue@^2.6.12:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==

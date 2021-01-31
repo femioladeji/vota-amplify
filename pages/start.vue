@@ -33,11 +33,14 @@ export default {
     Register,
     Login
   },
-  middleware ({ redirect }) {
+  async middleware ({ redirect }) {
     if (process.client) {
-      Auth.currentAuthenticatedUser().then((user) => {
+      try {
+        await Auth.currentAuthenticatedUser()
         redirect('/dashboard')
-      })
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   data () {
