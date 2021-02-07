@@ -17,7 +17,7 @@
 
 <script>
 import Sidebar from '@/components/Sidebar'
-import AuthNav from '@/components/AuthNav'
+import AuthNav from '@/components/Nav/AuthNav'
 
 export default {
   name: 'Dashboard',

@@ -1,6 +1,6 @@
 <template>
   <nav class="container flex items-center justify-between mx-auto nav">
-    <img src="images/logo.png">
+    <img src="/images/logo.png">
     <div>
       <nuxt-link
         to="/how-it-works"

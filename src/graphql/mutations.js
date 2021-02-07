@@ -16,6 +16,9 @@ export const createPoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      createdAt
+      updatedAt
+      owner
       questions {
         items {
           id
@@ -26,12 +29,10 @@ export const createPoll = /* GraphQL */ `
           options
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
@@ -50,6 +51,9 @@ export const updatePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      createdAt
+      updatedAt
+      owner
       questions {
         items {
           id
@@ -60,12 +64,10 @@ export const updatePoll = /* GraphQL */ `
           options
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
@@ -84,6 +86,9 @@ export const deletePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      createdAt
+      updatedAt
+      owner
       questions {
         items {
           id
@@ -94,12 +99,10 @@ export const deletePoll = /* GraphQL */ `
           options
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
@@ -117,6 +120,7 @@ export const createPollQuestion = /* GraphQL */ `
       options
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -134,6 +138,7 @@ export const updatePollQuestion = /* GraphQL */ `
       options
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -151,6 +156,7 @@ export const deletePollQuestion = /* GraphQL */ `
       options
       createdAt
       updatedAt
+      owner
     }
   }
 `;

@@ -1,6 +1,11 @@
 type Poll
   @model
-  @auth(rules: [{ allow: owner }]) {
+  @auth(rules: [
+    { allow: owner },
+    { allow: public, operations: [read] }
+  ])
+  @key(name: "byLink", fields: ["link"], queryField: "pollByLink" )
+  {
     id: ID!
     name: String!
     description: String

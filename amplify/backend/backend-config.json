@@ -19,7 +19,15 @@
               "userPoolId": "authamplifyvota1b83714d"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 7,
+                "description": "api key for public users"
+              }
+            }
+          ]
         }
       }
     }

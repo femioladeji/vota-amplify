@@ -2,7 +2,7 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreatePoll = /* GraphQL */ `
-  subscription OnCreatePoll($owner: String!) {
+  subscription OnCreatePoll($owner: String) {
     onCreatePoll(owner: $owner) {
       id
       name
@@ -13,6 +13,9 @@ export const onCreatePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      createdAt
+      updatedAt
+      owner
       questions {
         items {
           id
@@ -23,17 +26,15 @@ export const onCreatePoll = /* GraphQL */ `
           options
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
 export const onUpdatePoll = /* GraphQL */ `
-  subscription OnUpdatePoll($owner: String!) {
+  subscription OnUpdatePoll($owner: String) {
     onUpdatePoll(owner: $owner) {
       id
       name
@@ -44,6 +45,9 @@ export const onUpdatePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      createdAt
+      updatedAt
+      owner
       questions {
         items {
           id
@@ -54,17 +58,15 @@ export const onUpdatePoll = /* GraphQL */ `
           options
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
 export const onDeletePoll = /* GraphQL */ `
-  subscription OnDeletePoll($owner: String!) {
+  subscription OnDeletePoll($owner: String) {
     onDeletePoll(owner: $owner) {
       id
       name
@@ -75,6 +77,9 @@ export const onDeletePoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      createdAt
+      updatedAt
+      owner
       questions {
         items {
           id
@@ -85,32 +90,31 @@ export const onDeletePoll = /* GraphQL */ `
           options
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
+    }
+  }
+`;
+export const onCreatePollQuestion = /* GraphQL */ `
+  subscription OnCreatePollQuestion($owner: String) {
+    onCreatePollQuestion(owner: $owner) {
+      id
+      pollId
+      question
+      description
+      status
+      options
       createdAt
       updatedAt
       owner
     }
   }
 `;
-export const onCreatePollQuestion = /* GraphQL */ `
-  subscription OnCreatePollQuestion {
-    onCreatePollQuestion {
-      id
-      pollId
-      question
-      description
-      status
-      options
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onUpdatePollQuestion = /* GraphQL */ `
-  subscription OnUpdatePollQuestion {
-    onUpdatePollQuestion {
+  subscription OnUpdatePollQuestion($owner: String) {
+    onUpdatePollQuestion(owner: $owner) {
       id
       pollId
       question
@@ -119,12 +123,13 @@ export const onUpdatePollQuestion = /* GraphQL */ `
       options
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeletePollQuestion = /* GraphQL */ `
-  subscription OnDeletePollQuestion {
-    onDeletePollQuestion {
+  subscription OnDeletePollQuestion($owner: String) {
+    onDeletePollQuestion(owner: $owner) {
       id
       pollId
       question
@@ -133,6 +138,7 @@ export const onDeletePollQuestion = /* GraphQL */ `
       options
       createdAt
       updatedAt
+      owner
     }
   }
 `;

@@ -1,7 +1,9 @@
 <template>
   <div class="mx-auto">
     <Nav />
-    <nuxt />
+    <div class="container mx-auto my-4 bg-white">
+      <nuxt />
+    </div>
   </div>
 </template>
 
@@ -9,6 +11,7 @@
 import Nav from '@/components/Nav/Nav'
 
 export default {
+  name: 'Public',
   components: {
     Nav
   }

@@ -13,6 +13,9 @@ export const getPoll = /* GraphQL */ `
       isPublic
       isAnonymous
       link
+      createdAt
+      updatedAt
+      owner
       questions {
         items {
           id
@@ -23,12 +26,10 @@ export const getPoll = /* GraphQL */ `
           options
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
@@ -49,12 +50,48 @@ export const listPolls = /* GraphQL */ `
         isPublic
         isAnonymous
         link
-        questions {
-          nextToken
-        }
         createdAt
         updatedAt
         owner
+        questions {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const pollByLink = /* GraphQL */ `
+  query PollByLink(
+    $link: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelPollFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    pollByLink(
+      link: $link
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        description
+        startDate
+        endDate
+        publishStatus
+        isPublic
+        isAnonymous
+        link
+        createdAt
+        updatedAt
+        owner
+        questions {
+          nextToken
+        }
       }
       nextToken
     }
@@ -71,6 +108,7 @@ export const getPollQuestion = /* GraphQL */ `
       options
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -90,6 +128,7 @@ export const listPollQuestions = /* GraphQL */ `
         options
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

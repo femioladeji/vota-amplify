@@ -16,7 +16,7 @@
     <div v-if="!isForgotPassword" class="mb-6">
       <label for="login-password" class="flex justify-between text-sm">
         <span>Password</span>
-        <span class="text-blue-600 cursor-pointer" @click="isForgotPassword = true">Forgot password</span>
+        <span class="text-blue-600 cursor-pointer" @click="switchToForgetPassword">Forgot password</span>
       </label>
       <input
         id="login-password"
@@ -69,7 +69,7 @@
     <input
       type="submit"
       class="w-full py-4 mb-6 font-medium text-center text-white bg-green-700 rounded"
-      value="Reset Password"
+      :value="buttonCaption"
     >
   </form>
 </template>
@@ -140,6 +140,10 @@ export default {
       } finally {
         this.processing = false
       }
+    },
+    switchToForgetPassword () {
+      this.error = ''
+      this.isForgotPassword = true
     }
   }
 }
