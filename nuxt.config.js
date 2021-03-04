@@ -28,7 +28,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/amplify.js', mode: 'client' },
+    { src: '~/plugins/amplify.js' },
     { src: '~/plugins/toggle-button.js', mode: 'client' },
     { src: './plugins/tag-input', ssr: false }
   ],

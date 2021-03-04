@@ -1,6 +1,31 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const listPollVotes = /* GraphQL */ `
+  query ListPollVotes(
+    $filter: ModelPollVoteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPollVotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        email
+        fullname
+        pollId
+        date
+        choices {
+          questionId
+          option
+        }
+        confirmed
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getPoll = /* GraphQL */ `
   query GetPoll($id: ID!) {
     getPoll(id: $id) {
@@ -92,43 +117,6 @@ export const pollByLink = /* GraphQL */ `
         questions {
           nextToken
         }
-      }
-      nextToken
-    }
-  }
-`;
-export const getPollQuestion = /* GraphQL */ `
-  query GetPollQuestion($id: ID!) {
-    getPollQuestion(id: $id) {
-      id
-      pollId
-      question
-      description
-      status
-      options
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listPollQuestions = /* GraphQL */ `
-  query ListPollQuestions(
-    $filter: ModelPollQuestionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPollQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        pollId
-        question
-        description
-        status
-        options
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }

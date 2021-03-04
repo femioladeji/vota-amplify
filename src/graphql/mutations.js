@@ -160,3 +160,24 @@ export const deletePollQuestion = /* GraphQL */ `
     }
   }
 `;
+export const castPollVote = /* GraphQL */ `
+  mutation CastPollVote(
+    $input: CreatePollVoteInput!
+    $condition: ModelPollVoteConditionInput
+  ) {
+    castPollVote(input: $input, condition: $condition) {
+      id
+      email
+      fullname
+      pollId
+      date
+      choices {
+        questionId
+        option
+      }
+      confirmed
+      createdAt
+      updatedAt
+    }
+  }
+`;

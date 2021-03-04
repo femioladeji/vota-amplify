@@ -1,5 +1,5 @@
 type PollQuestion
-  @model
+  @model(queries: null)
   @auth(rules: [
     { allow: owner },
     { allow: public, operations: [read] }

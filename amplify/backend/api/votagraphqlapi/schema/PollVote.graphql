@@ -1,0 +1,19 @@
+type PollVote
+  @model (queries: { list: "listPollVotes" }, mutations: { create: "castPollVote" }, subscriptions: null)
+  @auth(rules: [
+    { allow: private, operations: [read] },
+    { allow: public, operations: [create] }
+  ]) {
+    id: ID!
+    email: String
+    fullname: String
+    pollId: ID!
+    date: AWSDateTime!
+    choices: [Choice!]!
+    confirmed: Boolean
+  }
+
+  type Choice {
+    questionId: ID!
+    option: String!
+  }
