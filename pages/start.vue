@@ -39,7 +39,7 @@ export default {
         await Auth.currentAuthenticatedUser()
         redirect('/dashboard')
       } catch (error) {
-        this.$toast.error('An error occurred')
+        // this.$toast.error('An error occurred')
       }
     }
   },
