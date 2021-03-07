@@ -39,8 +39,18 @@ export default {
     }
   },
   methods: {
+    slugify (title, separator = '-') {
+      return title
+        .toString()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036F]/g, '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9 ]/g, '')
+        .replace(/\s+/g, separator)
+    },
     async createPoll (pollInput) {
-      const input = { ...pollInput, link: 'this is a random link' }
+      const input = { ...pollInput, link: this.slugify(pollInput.link) }
       try {
         const { data } = await API.graphql({
           query: createPoll,
