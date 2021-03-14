@@ -5,8 +5,8 @@
   "javascript": {
     "framework": "vue",
     "config": {
-      "SourceDir": "/",
-      "DistributionDir": "dist",
+      "SourceDir": "/dist",
+      "DistributionDir": "/dist",
       "BuildCommand": "yarn build",
       "StartCommand": "yarn start"
     }
