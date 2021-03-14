@@ -1,7 +1,7 @@
 {
   "name": "vota",
   "version": "1.0.0",
-  "description": "My magnificent Nuxt.js project",
+  "description": "Voting app built with nuxt and aws amplify",
   "author": "Femi Oladeji",
   "private": true,
   "scripts": {

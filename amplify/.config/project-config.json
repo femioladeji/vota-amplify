@@ -8,7 +8,7 @@
       "SourceDir": "/",
       "DistributionDir": "dist",
       "BuildCommand": "yarn build",
-      "StartCommand": "yarn dev"
+      "StartCommand": "yarn start"
     }
   },
   "providers": [
