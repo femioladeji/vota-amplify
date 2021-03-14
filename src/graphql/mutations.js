@@ -170,7 +170,6 @@ export const castPollVote = /* GraphQL */ `
       email
       fullname
       pollId
-      date
       choices {
         questionId
         option
