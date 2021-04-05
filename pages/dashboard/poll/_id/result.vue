@@ -15,7 +15,9 @@
     <div class="px-8 py-4">
       <div v-if="pollResult">
         <div v-for="question in pollResult" :key="question.id" class="mb-16 flex items-center">
-          <div class="w-1/3">{{ question.question }}</div>
+          <div class="w-1/3">
+            {{ question.question }}
+          </div>
           <ResultChart :result="question.voteCount" />
         </div>
       </div>
