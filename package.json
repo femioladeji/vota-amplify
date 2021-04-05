@@ -1,7 +1,7 @@
 {
   "name": "vota",
   "version": "1.0.0",
-  "description": "My magnificent Nuxt.js project",
+  "description": "Voting app built with nuxt and aws amplify",
   "author": "Femi Oladeji",
   "private": true,
   "scripts": {
@@ -15,11 +15,15 @@
   "dependencies": {
     "@johmun/vue-tags-input": "^2.1.0",
     "@nuxtjs/toast": "^3.3.1",
+    "add": "^2.0.6",
     "aws-amplify": "^3.3.5",
     "aws-amplify-vue": "^2.1.2",
+    "chart.js": "2",
     "date-fns": "^2.16.1",
     "nuxt": "^2.0.0",
-    "vue-js-toggle-button": "^1.3.3"
+    "vue-chartjs": "^3.5.1",
+    "vue-js-toggle-button": "^1.3.3",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",

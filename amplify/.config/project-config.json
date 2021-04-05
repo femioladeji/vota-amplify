@@ -6,9 +6,9 @@
     "framework": "vue",
     "config": {
       "SourceDir": "/",
-      "DistributionDir": "dist",
+      "DistributionDir": "/dist",
       "BuildCommand": "yarn build",
-      "StartCommand": "yarn dev"
+      "StartCommand": "yarn start"
     }
   },
   "providers": [

@@ -1,6 +1,7 @@
 type PollVote
   @model (queries: { list: "listPollVotes" }, mutations: { create: "castPollVote" }, subscriptions: null)
   @auth(rules: [
+    { allow: private },
     { allow: public, operations: [create, read] }
   ]) {
     id: ID!
