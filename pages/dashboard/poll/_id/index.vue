@@ -7,22 +7,29 @@
         View Poll
       </h3>
       <div>
+        <router-link
+          v-if="canAct"
+          :to="`${poll.id}/result`"
+          class="inline-block btn btn-green"
+        >
+          View Result
+        </router-link>
         <button
-          v-if="poll && poll.id && !showForm"
+          v-if="canAct"
           class="btn btn-green"
           @click="showForm = true"
         >
           Edit Poll
         </button>
         <button
-          v-if="poll && poll.id && !showForm"
+          v-if="canAct"
           class="btn btn-green"
           @click="showInviteForm"
         >
           Invite People
         </button>
         <button
-          v-if="poll && poll.id && !showForm"
+          v-if="canAct"
           class="btn btn-danger"
           @click="removePoll"
         >
@@ -44,7 +51,7 @@
           @cancel="showForm = false"
           @submit="editPoll"
         />
-        <div v-if="!showForm && poll" class="px-8 py-4">
+        <div v-else-if="!showForm && poll" class="px-8 py-4">
           <div class="leading-loose">
             <div class="flex text-sm">
               <p class="w-1/5 mr-2 font-bold">
@@ -148,6 +155,9 @@
             @save="save"
           />
         </div>
+        <div v-else-if="showResult">
+          View result
+        </div>
       </div>
     </div>
   </div>
@@ -155,16 +165,16 @@
 
 <script>
 import { API } from 'aws-amplify'
-import { getPoll } from '../../../src/graphql/queries'
+import { getPoll } from '../../../../src/graphql/queries'
 import {
   updatePoll,
   deletePoll,
   createPollQuestion,
   updatePollQuestion,
   deletePollQuestion
-} from '../../../src/graphql/mutations'
-import PollForm from '../../../components/Poll/Form'
-import QuestionForm from '../../../components/Poll/QuestionForm'
+} from '../../../../src/graphql/mutations'
+import PollForm from '../../../../components/Poll/Form'
+import QuestionForm from '../../../../components/Poll/QuestionForm'
 
 export default {
   name: 'PollDashboard',
@@ -185,7 +195,13 @@ export default {
     return {
       showForm: false,
       poll: null,
-      questionEdit: null
+      questionEdit: null,
+      showResult: true
+    }
+  },
+  computed: {
+    canAct () {
+      return this.poll && this.poll.id && !this.showForm
     }
   },
   methods: {

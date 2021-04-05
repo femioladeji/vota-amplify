@@ -4,7 +4,7 @@
     <div>
       <nuxt-link
         to="/how-it-works"
-        class="px-10 py-2 mr-4 font-medium text-green-700 border border-green-700 rounded"
+        class="px-10 py-2 mr-4 font-medium text-green-700"
       >
         How it works
       </nuxt-link>
