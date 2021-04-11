@@ -30,7 +30,8 @@ export default {
   plugins: [
     { src: '~/plugins/amplify.js' },
     { src: '~/plugins/toggle-button.js', mode: 'client' },
-    { src: './plugins/tag-input', ssr: false }
+    { src: './plugins/tag-input', ssr: false },
+    '~plugins/vue-js-modal.js'
   ],
   /*
   ** Nuxt.js dev-modules

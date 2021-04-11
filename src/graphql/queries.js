@@ -1,6 +1,37 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getInvitation = /* GraphQL */ `
+  query GetInvitation($id: ID!) {
+    getInvitation(id: $id) {
+      id
+      pollId
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listInvitations = /* GraphQL */ `
+  query ListInvitations(
+    $filter: ModelInvitationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listInvitations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        pollId
+        email
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getPoll = /* GraphQL */ `
   query GetPoll($id: ID!) {
     getPoll(id: $id) {

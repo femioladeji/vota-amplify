@@ -1,0 +1,10 @@
+type Invitation
+  @model
+  @auth(rules: [
+      { allow: owner }
+  ])
+  @key(name: "byPoll", fields: ["pollId"]) {
+    id: ID!
+    pollId: ID!
+    email: String!
+}

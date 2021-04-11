@@ -1,6 +1,42 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateInvitation = /* GraphQL */ `
+  subscription OnCreateInvitation($owner: String!) {
+    onCreateInvitation(owner: $owner) {
+      id
+      pollId
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateInvitation = /* GraphQL */ `
+  subscription OnUpdateInvitation($owner: String!) {
+    onUpdateInvitation(owner: $owner) {
+      id
+      pollId
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteInvitation = /* GraphQL */ `
+  subscription OnDeleteInvitation($owner: String!) {
+    onDeleteInvitation(owner: $owner) {
+      id
+      pollId
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const onCreatePoll = /* GraphQL */ `
   subscription OnCreatePoll($owner: String) {
     onCreatePoll(owner: $owner) {

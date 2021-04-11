@@ -43,7 +43,6 @@
         {{ $fetchState.error.message }}
       </div> -->
       <div>
-        <!-- <Invitation v-if="poll" :poll-id="poll.id" /> -->
         <poll-form
           v-if="showForm"
           :poll="poll"
@@ -160,6 +159,9 @@
         </div>
       </div>
     </div>
+    <modal name="invitation-form">
+      <invitation-form />
+    </modal>
   </div>
 </template>
 
@@ -175,6 +177,7 @@ import {
 } from '../../../../src/graphql/mutations'
 import PollForm from '../../../../components/Poll/Form'
 import QuestionForm from '../../../../components/Poll/QuestionForm'
+import InvitationForm from '../../../../components/Poll/InvitationForm'
 
 export default {
   name: 'PollDashboard',
@@ -185,7 +188,7 @@ export default {
   components: {
     // Loader,
     PollForm,
-    // Invitation,
+    InvitationForm,
     QuestionForm
   },
   fetch () {
@@ -313,6 +316,7 @@ export default {
     },
 
     showInviteForm () {
+      this.$modal.show('invitation-form')
     }
   }
 }

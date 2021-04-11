@@ -14,7 +14,8 @@
         v-model="tagOption"
         placeholder="Add options"
         :tags="options"
-        class="w-full mb-4"
+        class="w-full mb-4 question-options"
+        :avoid-adding-duplicates="true"
         @tags-changed="update"
       />
     </div>
@@ -149,7 +150,7 @@ export default {
 .vue-tags-input {
   max-width: 100% !important;
 }
-.vue-tags-input .ti-input {
+.question-options .ti-input {
   @apply text-sm ml-2 w-full border border-gray-400 rounded p-2;
 }
 </style>
