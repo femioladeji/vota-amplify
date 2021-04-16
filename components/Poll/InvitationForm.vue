@@ -4,7 +4,7 @@
       Invite People
     </h3>
     <p class="text-gray-600 mb-4">
-      You can invite people via email to respond to this poll
+      You can invite people via email to respond to this poll (comma separated)
     </p>
     <vue-tags-input
       v-model="email"
@@ -12,23 +12,55 @@
       class="w-full mb-4 invitation-emails"
       :tags="allEmails"
       :validation="validateEmail"
+      :add-on-key="[13, ',', ';']"
       @tags-changed="update"
     />
-    <button type="submit" class="btn btn-xs btn-green">
+    <button type="submit" class="btn btn-xs btn-green" :disabled="sending" @click="sendInvitation">
       Send Invitation
     </button>
+
+    <div class="my-2 max-h-10 overflow-y-auto">
+      <div v-if="!existingInvitations">
+        Loading...
+      </div>
+      <div v-else-if="existingInvitations.length">
+        <h4 class="text-xl text-center">
+          Already Invited
+        </h4>
+        <div
+          v-for="(invitation, index) in existingInvitations"
+          :key="index"
+          class="py-2 border-b flex justify-between items-center"
+        >
+          <span>{{ invitation.email }}</span>
+          <button @click="deleteInvitation(invitation.id, index)">
+            <img src="../../static/images/icons/trash.svg" class="w-4 h-4">
+          </button>
+        </div>
+      </div>
+      <div v-else>
+        No invitations yet
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// import { createInvitation } from '../../src/graphql/mutations'
+import { API } from 'aws-amplify'
+import { createInvitation, deleteInvitation } from '../../src/graphql/mutations'
+import { listInvitations } from '../../src/graphql/queries'
 
 export default {
   name: 'InvitationForm',
+  fetch () {
+    this.getInvitations()
+  },
   data () {
     return {
       email: '',
-      allEmails: []
+      allEmails: [],
+      sending: false,
+      existingInvitations: null
     }
   },
   computed: {
@@ -46,8 +78,53 @@ export default {
     }
   },
   methods: {
+    async getInvitations () {
+      try {
+        const { data } = await API.graphql({
+          query: listInvitations,
+          variables: {
+            pollId: this.$route.params.id
+          }
+        })
+        this.existingInvitations = data.listInvitations.items
+      } catch (error) {
+        console.log(error)
+      }
+    },
     update (option) {
-      console.log(option)
+      this.allEmails = option
+    },
+    async sendInvitation () {
+      this.sending = true
+      try {
+        const sentEmails = this.allEmails.map(({ text }) => API.graphql({
+          query: createInvitation,
+          variables: {
+            input: {
+              pollId: this.$route.params.id,
+              email: text
+            }
+          }
+        }))
+        await Promise.all(sentEmails)
+        this.$toast.success(`${sentEmails.length} invitations successfully sent`)
+        this.$emit('close')
+      } catch (error) {
+        return this.$toast.error('An error occurred while sending invitation')
+      } finally {
+        this.sending = false
+      }
+    },
+    async deleteInvitation (id, index) {
+      try {
+        await API.graphql({
+          query: deleteInvitation,
+          variables: { input: { id } }
+        })
+        this.existingInvitations.splice(index, 1)
+      } catch (error) {
+        this.$toast.error('An error occurred while deleting the invitation')
+      }
     }
   }
 }

@@ -159,8 +159,8 @@
         </div>
       </div>
     </div>
-    <modal name="invitation-form">
-      <invitation-form />
+    <modal name="invitation-form" height="auto" :min-height="400">
+      <invitation-form @close="closeInvitation" />
     </modal>
   </div>
 </template>
@@ -317,6 +317,10 @@ export default {
 
     showInviteForm () {
       this.$modal.show('invitation-form')
+    },
+
+    closeInvitation () {
+      this.$modal.hide('invitation-form')
     }
   }
 }
