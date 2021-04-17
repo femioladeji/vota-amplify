@@ -2,7 +2,7 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateInvitation = /* GraphQL */ `
-  subscription OnCreateInvitation($owner: String!) {
+  subscription OnCreateInvitation($owner: String) {
     onCreateInvitation(owner: $owner) {
       id
       pollId
@@ -14,7 +14,7 @@ export const onCreateInvitation = /* GraphQL */ `
   }
 `;
 export const onUpdateInvitation = /* GraphQL */ `
-  subscription OnUpdateInvitation($owner: String!) {
+  subscription OnUpdateInvitation($owner: String) {
     onUpdateInvitation(owner: $owner) {
       id
       pollId
@@ -26,7 +26,7 @@ export const onUpdateInvitation = /* GraphQL */ `
   }
 `;
 export const onDeleteInvitation = /* GraphQL */ `
-  subscription OnDeleteInvitation($owner: String!) {
+  subscription OnDeleteInvitation($owner: String) {
     onDeleteInvitation(owner: $owner) {
       id
       pollId

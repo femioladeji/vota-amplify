@@ -98,7 +98,7 @@
               <p class="w-1/5 mr-2 font-bold">
                 Poll Link:
               </p>
-              {{ poll.link }}
+              {{ getLink(poll.link) }}
             </div>
           </div>
           <p v-if="poll.questions.items.length" class="mt-4 text-lg">
@@ -321,6 +321,10 @@ export default {
 
     closeInvitation () {
       this.$modal.hide('invitation-form')
+    },
+
+    getLink (link) {
+      return `https://${window.location.host}/vote/poll/${link}`
     }
   }
 }

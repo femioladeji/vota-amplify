@@ -1,7 +1,8 @@
 type Invitation
   @model
   @auth(rules: [
-      { allow: owner }
+      { allow: owner },
+      { allow: public, operations: [read] }
   ])
   @key(name: "byPoll", fields: ["pollId"]) {
     id: ID!
