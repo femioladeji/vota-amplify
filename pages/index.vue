@@ -3,13 +3,11 @@
     <div class="container flex items-center justify-between mx-auto">
       <div class="intro-text">
         <p class="text-4xl">
-          Lorem ipsum dolor sit amet
+          Welcome to Vota
         </p>
         <p class="mt-4 leading-7 text-green-700">
-          Tortor cursus egestas eu sit malesuada. Quis sed tortor non bibendum.
-          Ullamcorper varius felis nisi augue. Amet vulputate congue etiam dis
-          lacinia dignissim nunc convallis id. Auctor augue mauris at enim,
-          proin. Platea montes, sapien nunc sed
+          This is a work in progress. You can easily create polls
+          and share links for people to vote.
         </p>
       </div>
       <div class="w-2/5 p-8 flip-card">

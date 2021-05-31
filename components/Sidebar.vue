@@ -13,7 +13,7 @@
       >
         Polls
       </nuxt-link>
-      <nuxt-link
+      <!-- <nuxt-link
         class="block py-4 pl-4 border-b border-gray-700"
         to="/dashboard/elections"
       >
@@ -30,7 +30,7 @@
         to="/dashboard/settings"
       >
         Settings
-      </nuxt-link>
+      </nuxt-link> -->
     </div>
   </div>
 </template>

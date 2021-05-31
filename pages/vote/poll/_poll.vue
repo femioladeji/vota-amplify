@@ -77,11 +77,28 @@
           </router-link>
         </div>
       </div>
-      <div v-else>
+      <div v-else-if="submitting">
         <img class="mx-auto my-4 w-12 animate-logo" src="../../../static/images/logo_part.svg">
         <p class="text-center my-4">
           Submitting...
         </p>
+      </div>
+      <div v-else-if="!voterEmail">
+        <img class="mx-auto my-4 w-12" src="../../../static/images/logo_part.svg">
+        <p class="text-center my-4">
+          This poll is not made available to public. <br>If you've been invited, please enter your email address
+        </p>
+        <form class="flex justify-center items-center" @submit.prevent="checkEmail">
+          <input
+            v-model="email"
+            required
+            class="w-full md:w-1/3 p-2 text-sm border border-gray-300 rounded focus:outline-none focus:border-gray-500"
+            type="text"
+            placeholder="Email address"
+            name="voter-email"
+          >
+          <input type="submit" class="btn ml-2 btn-green" value="Go">
+        </form>
       </div>
     </div>
   </div>
@@ -91,6 +108,7 @@
 import { API } from 'aws-amplify'
 import { pollByLink } from '../../../src/graphql/custom-queries'
 import { castPollVote } from '../../../src/graphql/mutations'
+import { listInvitations } from '../../../src/graphql/queries'
 
 export default {
   name: 'Vote',
@@ -111,7 +129,9 @@ export default {
       questionIndex: 0,
       choice: [],
       submitting: false,
-      submitted: false
+      submitted: false,
+      voterEmail: null,
+      email: ''
     }
   },
   computed: {
@@ -123,7 +143,7 @@ export default {
       return voted.includes(this.poll.id)
     },
     canViewQuestions () {
-      return !this.submitting && !this.submitted
+      return !this.submitting && !this.submitted && (this.poll.isPublic || (!this.poll.isPublic && this.voterEmail))
     }
   },
   methods: {
@@ -151,8 +171,10 @@ export default {
       const input = {
         pollId: this.poll.id,
         choices,
-        confirmed: true,
-        date: new Date()
+        confirmed: true
+      }
+      if (this.voterEmail) {
+        input.email = this.voterEmail
       }
       try {
         await API.graphql({
@@ -166,6 +188,27 @@ export default {
         this.$toast.error('An error occurred while submitting your poll')
       } finally {
         this.submitting = false
+      }
+    },
+    async checkEmail () {
+      try {
+        const invitation = await API.graphql({
+          query: listInvitations,
+          variables: {
+            filter: {
+              email: { eq: this.email },
+              pollId: { eq: this.poll.id }
+            }
+          },
+          authMode: 'API_KEY'
+        })
+        if (invitation.data.listInvitations.items.length) {
+          this.voterEmail = this.email
+        } else {
+          this.$toast.error('Looks like you\'ve not been invited to vote on this poll')
+        }
+      } catch (error) {
+        this.$toast.error('An error occurred, please try again')
       }
     }
   }

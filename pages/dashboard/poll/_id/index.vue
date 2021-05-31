@@ -43,7 +43,6 @@
         {{ $fetchState.error.message }}
       </div> -->
       <div>
-        <!-- <Invitation v-if="poll" :poll-id="poll.id" /> -->
         <poll-form
           v-if="showForm"
           :poll="poll"
@@ -99,7 +98,7 @@
               <p class="w-1/5 mr-2 font-bold">
                 Poll Link:
               </p>
-              {{ poll.link }}
+              {{ getLink(poll.link) }}
             </div>
           </div>
           <p v-if="poll.questions.items.length" class="mt-4 text-lg">
@@ -160,6 +159,9 @@
         </div>
       </div>
     </div>
+    <modal name="invitation-form" height="auto" :min-height="400">
+      <invitation-form @close="closeInvitation" />
+    </modal>
   </div>
 </template>
 
@@ -175,6 +177,7 @@ import {
 } from '../../../../src/graphql/mutations'
 import PollForm from '../../../../components/Poll/Form'
 import QuestionForm from '../../../../components/Poll/QuestionForm'
+import InvitationForm from '../../../../components/Poll/InvitationForm'
 
 export default {
   name: 'PollDashboard',
@@ -185,7 +188,7 @@ export default {
   components: {
     // Loader,
     PollForm,
-    // Invitation,
+    InvitationForm,
     QuestionForm
   },
   fetch () {
@@ -313,6 +316,15 @@ export default {
     },
 
     showInviteForm () {
+      this.$modal.show('invitation-form')
+    },
+
+    closeInvitation () {
+      this.$modal.hide('invitation-form')
+    },
+
+    getLink (link) {
+      return `https://${window.location.host}/vote/poll/${link}`
     }
   }
 }
